@@ -1,11 +1,18 @@
 import logging
 import sys
+
+from pathlib import Path
 from logging import Formatter, StreamHandler
 from colorlog import ColoredFormatter
 
 def setup_logger():
+    log_dir = Path("logs")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / "bot.log"
+    
     logger = logging.getLogger("mood_bot")
     logger.setLevel(logging.DEBUG)
+    
     
     console_format = (
         "%(log_color)s[%(asctime)s] %(blue)s%(name)s:%(reset)s "
@@ -22,7 +29,7 @@ def setup_logger():
             'INFO': 'green',
             'WARNING': 'yellow',
             'ERROR': 'red',
-            'CRITICAL': 'red,bg_white',
+            'CRITICAL': 'purple',
         },
         secondary_log_colors={},
         style='%'
@@ -32,7 +39,7 @@ def setup_logger():
     console_handler.setFormatter(console_formatter)
     console_handler.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler("logs/bot.log")
+    file_handler = logging.FileHandler(log_file)
     file_formatter = Formatter(
         "[%(asctime)s] %(name)s:%(levelname)s | %(funcName)s: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S"
