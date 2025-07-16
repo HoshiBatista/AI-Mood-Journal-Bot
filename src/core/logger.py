@@ -6,7 +6,7 @@ from logging import Formatter, StreamHandler
 from colorlog import ColoredFormatter
 
 def setup_logger():
-    log_dir = Path("logs")
+    log_dir = Path("../logs")
     log_dir.mkdir(parents=True, exist_ok=True)
     log_file = log_dir / "bot.log"
     
@@ -28,7 +28,7 @@ def setup_logger():
             'DEBUG': 'cyan',
             'INFO': 'green',
             'WARNING': 'yellow',
-            'ERROR': 'red',
+            'ERROR': 'bold_red',
             'CRITICAL': 'purple',
         },
         secondary_log_colors={},
