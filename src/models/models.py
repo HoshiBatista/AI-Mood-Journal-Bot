@@ -17,7 +17,17 @@ class BaseUser(Base):
     phone = Column(String(12), nullable=False)
     created_at = Column(DateTime, default=datetime.now)
     is_active = Column(Boolean, default=True)
+
+class Client(BaseUser):
+    __tablename__ = "clients"
     
+    alias = Column(String(32), nullable=False)  
+    psychologist_id = Column(UUID(as_uuid=True), ForeignKey('psychologists.id'))
+    
+    psychologist = relationship("Psychologist", back_populates="clients")
+    mood_entries = relationship("MoodEntry", back_populates="client")
+    feedbacks = relationship("PsychologistFeedback", back_populates="client")
+
 class Psychologist(BaseUser):
     __tablename__ = "psychologists"
     
