@@ -18,4 +18,13 @@ class BaseUser(Base):
     created_at = Column(DateTime, default=datetime.now)
     is_active = Column(Boolean, default=True)
     
+class Psychologist(BaseUser):
+    __tablename__ = "psychologists"
     
+    qualification = Column(String(128), nullable=False)
+    specialization = Column(String(128))
+    license_number = Column(String(32))
+    experience_years = Column(Integer)
+    
+    clients = relationship("Client", back_populates="psychologist")
+    feedbacks = relationship("PsychologistFeedback", back_populates="psychologist")
