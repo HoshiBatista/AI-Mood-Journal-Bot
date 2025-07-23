@@ -38,3 +38,19 @@ class Psychologist(BaseUser):
     
     clients = relationship("Client", back_populates="psychologist")
     feedbacks = relationship("PsychologistFeedback", back_populates="psychologist")
+    
+class MoodEntry(Base):
+    __tablename__ = "mood_entries"
+    
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    client_id = Column(UUID(as_uuid=True), ForeignKey('clients.id'), nullable=False)
+    date = Column(DateTime, default=datetime.now)
+    mood_level = Column(Enum(MoodLevel), nullable=False)
+    note = Column(Text)
+    analyzed = Column(Boolean, default=False)
+    
+    client = relationship("Client", back_populates="mood_entries")
+    triggers = relationship("EntryTrigger", back_populates="entry")
+    activities = relationship("EntryActivity", back_populates="entry")
+    analysis = relationship("EmotionAnalysis", back_populates="entry", uselist=False)
+    feedbacks = relationship("PsychologistFeedback", back_populates="entry")
