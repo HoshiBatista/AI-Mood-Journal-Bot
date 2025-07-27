@@ -14,6 +14,9 @@ def setup_logger():
     logger = logging.getLogger("mood_bot")
     logger.setLevel(logging.DEBUG)
 
+    if logger.hasHandlers():
+        logger.handlers.clear()
+
     console_format = (
         "%(log_color)s[%(asctime)s] %(blue)s%(name)s:%(reset)s "
         "%(log_color)s%(levelname)s%(reset)s | "
@@ -56,10 +59,12 @@ def setup_logger():
     logger.error("Error message test")
     logger.critical("Critical message test")
 
+    logger.info("\nLogger initialized successfully\n")
+
     return logger
 
 
-class LoggingMiddleware:
+class Logging_Middleware:
     def __init__(self, logger):
         self.logger = logger
 
@@ -81,3 +86,6 @@ class LoggingMiddleware:
                 extra={"user": user_info},
             )
             raise
+
+
+logger = setup_logger()

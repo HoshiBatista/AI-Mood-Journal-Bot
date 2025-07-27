@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 
 from config.config import config
-from core.logger import setup_logger, LoggingMiddleware
+from core.logger import setup_logger, Logging_Middleware
 
 logger = setup_logger()
 
@@ -63,7 +63,7 @@ async def new_entry_command(message: types.Message):
 
 
 async def main():
-    logging_middleware = LoggingMiddleware(logger)
+    logging_middleware = Logging_Middleware(logger)
     dp.update.outer_middleware(logging_middleware)
 
     logger.info("Starting Mood Journal Bot...")
