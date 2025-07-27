@@ -1,7 +1,6 @@
-from typing import List
-
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 class Settings(BaseSettings):
     BOT_TOKEN: SecretStr
@@ -12,15 +11,11 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
 
-    PGADMIN_EMAIL: str = ""   
-    PGADMIN_PASSWORD: str = "" 
-    
-    model_config = SettingsConfigDict(
-        env_file="../.env", 
-        extra="ignore",
-        env_prefix=""  
-    )
-    
+    PGADMIN_EMAIL: str = ""
+    PGADMIN_PASSWORD: str = ""
+
+    model_config = SettingsConfigDict(env_file="../.env", extra="ignore", env_prefix="")
+
     @property
     def postgres_url(self):
         return (
@@ -30,5 +25,6 @@ class Settings(BaseSettings):
             f"{self.POSTGRES_PORT}/"
             f"{self.POSTGRES_DB}"
         )
+
 
 config = Settings()
