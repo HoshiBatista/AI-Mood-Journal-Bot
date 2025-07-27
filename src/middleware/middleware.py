@@ -2,11 +2,11 @@ from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
 from typing import Callable, Awaitable, Any, Dict
 
-from database.database import AsyncSessionLocal
+from database.database import Async_Session_Local
 from core.logger import logger
 
 
-class DBSessionMiddleware(BaseMiddleware):
+class DB_Session_Middleware(BaseMiddleware):
     """Middleware для инъекции сессии БД в обработчики"""
 
     async def __call__(
@@ -15,7 +15,7 @@ class DBSessionMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        async with AsyncSessionLocal() as session:
+        async with Async_Session_Local() as session:
             data["session"] = session
             logger.debug("Database session created for request")
 
