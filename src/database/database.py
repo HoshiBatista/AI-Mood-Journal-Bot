@@ -41,3 +41,32 @@ async def health_check():
     except Exception as e:
         logger.error(f"Database health check failed: {str(e)}", exc_info=True)
         return False
+
+
+async def on_startup():
+    """Действия при запуске бота"""
+    try:
+        await init_db()
+
+        if await health_check():
+            logger.info("Database connection established successfully")
+        else:
+            logger.critical("Failed to establish database connection")
+            raise RuntimeError("Database connection failed")
+
+    except Exception as e:
+        logger.critical(f"Startup failed: {str(e)}", exc_info=True)
+        raise
+
+    logger.info("Bot started successfully")
+
+
+async def on_shutdown():
+    """Действия при остановке бота"""
+    try:
+        await engine.dispose()
+        logger.info("Database engine disposed successfully")
+    except Exception as e:
+        logger.error(f"Error disposing database engine: {str(e)}", exc_info=True)
+
+    logger.info("Bot stopped")

@@ -3,38 +3,9 @@ from aiogram import Bot, Dispatcher
 
 from config.config import config
 from core.logger import logger, Logging_Middleware
-from database.database import engine, init_db, health_check
+from database.database import on_startup, on_shutdown
 from middleware.middleware import DB_Session_Middleware
 from handlers.main_handlers import main_router
-
-
-async def on_startup():
-    """Действия при запуске бота"""
-    try:
-        await init_db()
-
-        if await health_check():
-            logger.info("Database connection established successfully")
-        else:
-            logger.critical("Failed to establish database connection")
-            raise RuntimeError("Database connection failed")
-
-    except Exception as e:
-        logger.critical(f"Startup failed: {str(e)}", exc_info=True)
-        raise
-
-    logger.info("Bot started successfully")
-
-
-async def on_shutdown():
-    """Действия при остановке бота"""
-    try:
-        await engine.dispose()
-        logger.info("Database engine disposed successfully")
-    except Exception as e:
-        logger.error(f"Error disposing database engine: {str(e)}", exc_info=True)
-
-    logger.info("Bot stopped")
 
 
 async def main():
