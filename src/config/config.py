@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     PGADMIN_EMAIL: str = ""
     PGADMIN_PASSWORD: str = ""
 
-    model_config = SettingsConfigDict(env_file="../.env", extra="ignore", env_prefix="")
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_prefix="")
 
     @property
     def postgres_url(self):
