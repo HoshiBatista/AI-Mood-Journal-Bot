@@ -98,7 +98,7 @@ async def new_entry_command(message: types.Message):
 async def main():
     logger.info("Starting Mood Journal Bot initialization...")
 
-    logging_middleware = Logging_Middleware()
+    logging_middleware = Logging_Middleware(logger)
     db_middleware = DB_Session_Middleware()
 
     dp.update.outer_middleware(logging_middleware)

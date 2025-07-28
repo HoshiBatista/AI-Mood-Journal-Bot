@@ -1,5 +1,5 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import async_sessionmaker
+from sqlalchemy import text
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import NullPool
 
 from config.config import config
@@ -11,12 +11,6 @@ engine = create_async_engine(
     echo=False,
     future=True,
     poolclass=NullPool,
-    connect_args={
-        "command_timeout": 30,
-        "keepalives": 1,
-        "keepalives_idle": 30,
-        "keepalives_interval": 10,
-    },
 )
 
 Async_Session_Local = async_sessionmaker(
@@ -39,7 +33,7 @@ async def health_check():
     """Проверка работоспособности подключения к БД"""
     try:
         async with engine.connect() as conn:
-            result = await conn.scalar("SELECT 1")
+            result = await conn.scalar(text("SELECT 1"))
             if result == 1:
                 logger.debug("Database health check: OK")
                 return True

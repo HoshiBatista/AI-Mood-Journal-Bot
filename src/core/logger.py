@@ -59,7 +59,7 @@ def setup_logger():
     logger.error("Error message test")
     logger.critical("Critical message test")
 
-    logger.info("\nLogger initialized successfully\n")
+    logger.info("Logger initialized successfully")
 
     return logger
 

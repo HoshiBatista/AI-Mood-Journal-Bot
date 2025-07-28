@@ -13,7 +13,7 @@ from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from datetime import datetime
-from core.enums import MoodLevel, TriggerType, ActivityType
+from core.enums import Mood_Level, Trigger_Type, Activity_Type
 
 Base = declarative_base()
 
@@ -104,7 +104,7 @@ class MoodEntry(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     client_id = Column(UUID(as_uuid=True), ForeignKey("clients.id"), nullable=False)
     date = Column(DateTime, default=datetime.now)
-    mood_level = Column(Enum(MoodLevel), nullable=False)
+    mood_level = Column(Enum(Mood_Level), nullable=False)
     note = Column(Text)
     analyzed = Column(Boolean, default=False)
 
@@ -128,7 +128,7 @@ class EntryTrigger(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     entry_id = Column(UUID(as_uuid=True), ForeignKey("mood_entries.id"), nullable=False)
-    trigger_type = Column(Enum(TriggerType), nullable=False)
+    trigger_type = Column(Enum(Trigger_Type), nullable=False)
     intensity = Column(Integer)
 
     entry = relationship("MoodEntry", back_populates="triggers")
@@ -147,7 +147,7 @@ class EntryActivity(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     entry_id = Column(UUID(as_uuid=True), ForeignKey("mood_entries.id"), nullable=False)
-    activity_type = Column(Enum(ActivityType), nullable=False)
+    activity_type = Column(Enum(Activity_Type), nullable=False)
     duration = Column(Integer)
 
     entry = relationship("MoodEntry", back_populates="activities")
