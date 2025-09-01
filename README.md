@@ -9,7 +9,7 @@ Ai mood journal in telegram bot - your personal helper
 [![codecov](https://codecov.io/gh/HoshiBatista/AI-Mood-Journal-Bot/branch/main/graph/badge.svg)](https://codecov.io/gh/HoshiBatista/AI-Mood-Journal-Bot)
 [![codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub last commit](https://img.shields.io/github/last-commit/HoshiBatista/AI-Mood-Journal-Bot.svg)](https://github.com/HoshiBatista/AI-Mood-Journal-Bot/commits/main)
-![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 <br>
 [![GitHub stars](https://img.shields.io/github/stars/HoshiBatista/AI-Mood-Journal-Bot?style=social)](https://github.com/HoshiBatista/AI-Mood-Journal-Bot/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/HoshiBatista/AI-Mood-Journal-Bot?style=social)](https://github.com/HoshiBatista/AI-Mood-Journal-Bot/network/members)
