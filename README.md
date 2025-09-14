@@ -16,37 +16,3 @@ Ai mood journal in telegram bot - your personal helper
 [![GitHub stars](https://img.shields.io/github/stars/HoshiBatista/AI-Mood-Journal-Bot?style=social)](https://github.com/HoshiBatista/AI-Mood-Journal-Bot/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/HoshiBatista/AI-Mood-Journal-Bot?style=social)](https://github.com/HoshiBatista/AI-Mood-Journal-Bot/network/members)
 
-
-AI-MOOD-JOURNAL-BOT/
-├── alembic/
-│   ├── versions/ (миграции)
-│   ├── env.py
-│   └── script.py.mako
-├── config/
-│   └── config.py
-├── logs/
-│   └── bot.log
-├── src/
-│   ├── bot/
-│   │   ├── handlers/
-│   │   │   ├── base.py (стартовые команды)
-│   │   │   ├── mood.py (отслеживание настроения)
-│   │   │   ├── report.py (генерация отчетов)
-│   │   │   └── analytics.py (аналитика)
-│   │   ├── utils/
-│   │   │   ├── keyboards.py
-│   │   │   └── states.py (FSM состояния)
-│   │   └── launcher.py
-│   ├── core/
-│   │   ├── models.py (сущности БД)
-│   │   ├── database.py (подключение к БД)
-│   │   ├── logger.py (система логирования)
-│   │   └── enums.py (перечисления)
-│   └── ml/
-│       ├── emotion_detection.py
-│       └── prediction.py
-├── .env
-├── .gitignore
-├── alembic.ini
-├── requirements.txt
-└── README.md
